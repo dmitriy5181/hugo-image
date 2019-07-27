@@ -2,7 +2,7 @@ kind: pipeline
 name: default
 
 steps:
-- name: deploy
+- name: image
   image: plugins/docker
   settings:
     username:
@@ -11,3 +11,10 @@ steps:
       from_secret: docker_password
     repo: dmitriy5181/hugo
     tags: latest
+
+- name: notify
+  image: plugins/slack
+  settings:
+    webhook:
+      from_secret: slack_webhook
+    channel: general
