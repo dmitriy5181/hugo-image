@@ -13,8 +13,15 @@ steps:
     tags: latest
 
 - name: notify
-  image: plugins/slack
+  image: plugins/pushover
   settings:
-    webhook:
-      from_secret: slack_webhook
-    channel: general
+    token:
+      from_secret: pushover_token
+    user:
+      from_secret: pushover_user
+    title: "[{{ build.status }}] {{ repo.name }}"
+    message: "({{ build.branch }}) - {{ build.message }}"
+  when:
+    status:
+      - success
+      - failure
