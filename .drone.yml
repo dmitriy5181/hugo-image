@@ -13,14 +13,16 @@ steps:
     tags: latest
 
 - name: notify
-  image: plugins/pushover
+  image: drillster/drone-email
   settings:
-    token:
-      from_secret: pushover_token
-    user:
-      from_secret: pushover_user
-    title: "[{{ build.status }}] {{ repo.name }}"
-    message: "({{ build.branch }}) - {{ build.message }}"
+    from: drone@prgm.xyz
+    skip_verify: true
+    host: prgm.xyz
+    port: 25
+    username:
+      from_secret: email_username
+    password:
+      from_secret: email_password
   when:
     status:
       - success
