@@ -15,10 +15,8 @@ steps:
 - name: notify
   image: drillster/drone-email
   settings:
-    from: drone@prgm.xyz
-    skip_verify: true
+    from: "Drone CI <drone@prgm.xyz>"
     host: prgm.xyz
-    port: 25
     username:
       from_secret: email_username
     password:
