@@ -11,6 +11,8 @@ steps:
       from_secret: docker_password
     repo: dmitriy5181/hugo
     tags: latest
+    context: hugo
+    dockerfile: hugo/Dockerfile
 
 - name: notify
   image: drillster/drone-email
